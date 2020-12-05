@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid">
+{% for group in groupList %}
+<hr>
+<div class="row">
+	<div class="col-md-2">
+	{{ group.name }}
+	</div>
+	<div class="col-md-8">
+		<div class="row">
+	{% for site in group.siteList %}
+			<div class="col-md-3">
+			<a class="text-light" href="{{ site.url }}"> 
+				<img width="24" height="24" src="{{ site.image }}" />{{ site.name }}
+			</a>
+			</div>
+	{% endfor %}
+		</div>
+	</div>
+</div>
+{% endfor %}
+<hr>
+<div class="row">
+	<div class="col-md-8">
+		<div class="row">
+		{% for search in searchList %}
+		<div class="col-md-6">
+<form onsubmit="window.open('{{ search.urlPartBeforeKeywords }}'+{{ search.id }}.value+'{{ search.urlPartAfterKeywords }}')">
+<td><img width="24" heigh="24" src="{{ search.image }}" />{{ search.name }}</td>
+<td><input id="{{ search.id }}" type="text" value=""></td>
+</form>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+</div>
+<div>
+</div>
+{% endblock content %}
