@@ -1,41 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
-
-<div class="container-fluid">
-{% for group in groupList %}
-<hr>
-<div class="row">
-	<div class="col-md-2">
-	{{ group.name }}
+<div class="container-fluid ">
+	{% for group in groupList %}
+	<hr>
+	<div class="page-header">
+		<h1 class="text-center text-light">{{ group.name }}</h1>
 	</div>
-	<div class="col-md-8">
-		<div class="row">
-	{% for site in group.siteList %}
-			<div class="col-md-3">
-			<a class="text-light" href="{{ site.url }}"> 
-				<img width="24" height="24" src="{{ site.image }}" />{{ site.name }}
-			</a>
+	<div class="row" style="float: none; margin: 0 auto;">
+		<div class="col-md-12">
+			<div class="row ">
+				{% for site in group.siteList %}
+				<div class="card mt-1 ml-1" style="width: 15rem;">
+					<img class="card-img-top " src="{{ site.image }}" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">{{ site.name }}</h5>
+						<p class="card-text">Demo App , Some description.</p>
+						<a href="{{ site.url }}" class="btn btn-primary">SSO Login</a>
+					</div>
+				</div>
+				{% endfor %}
 			</div>
+		</div>
+	</div>
 	{% endfor %}
-		</div>
-	</div>
+	<hr>
 </div>
-{% endfor %}
-<hr>
-<div class="row">
-	<div class="col-md-8">
-		<div class="row">
-		{% for search in searchList %}
-		<div class="col-md-6">
-<form onsubmit="window.open('{{ search.urlPartBeforeKeywords }}'+{{ search.id }}.value+'{{ search.urlPartAfterKeywords }}')">
-<td><img width="24" heigh="24" src="{{ search.image }}" />{{ search.name }}</td>
-<td><input id="{{ search.id }}" type="text" value=""></td>
-</form>
-		</div>
-		{% endfor %}
-	</div>
-</div>
-</div>
-<div>
-</div>
+
 {% endblock content %}
